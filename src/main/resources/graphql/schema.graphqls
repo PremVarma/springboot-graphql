@@ -1,0 +1,38 @@
+type Product {
+    id: ID,
+    name: String,
+    category: String,
+    price: Float,
+    stock: Int
+}
+
+type Author {
+    id: ID
+    name: String
+    biography: String
+}
+
+type Book {
+    id: ID
+    title: String
+    author: Author
+    publishedDate: String
+}
+
+type Query {
+    getProducts: [Product]
+    getProductByCategory(category:String): [Product]
+
+    allBooks: [Book]
+    bookById(id: ID): Book
+    authorById(id: ID): Author
+}
+
+type Mutation {
+    updateStock(id: ID,stock: Int): Product
+    receiveShipment(id: ID,qty: Int): Product
+
+    createBook(title: String,authorId: ID, publishedDate: String): Book
+    updateBook(id: ID, title: String, authorId: ID, publishedDate: String): Book
+    deleteBook(id: ID): Boolean
+}
